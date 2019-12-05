@@ -19,7 +19,6 @@ def copy_pycharm_settings():
     pycharm_dir = ''
     for each in os.listdir(home):
         if '.PyCharm' in each:
-            print 'found %s' % each
             pycharm_dir = each
     if pycharm_dir:
         path_ = os.path.join(home, pycharm_dir, "config", "options")
