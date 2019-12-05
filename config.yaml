@@ -1,0 +1,22 @@
+company: cglumberjack
+github:
+  org: basepipe
+  repos: 'onboarding' # if empty we'll allow the user to choose which repos in the command line.
+  username: "tmikota"
+  token: 32bf61f79095164aaf411f26bb9c46280996759e
+sprintly:
+  user: tom@cglumberjack.com
+  token: wNV8mDWD2p3SdsdR6aXJQFU3XJXu5b76
+  api: 'https://sprint.ly/api'
+  product_id: 51974
+  auth: ('tom@cglumberjack.com', 'wNV8mDWD2p3SdsdR6aXJQFU3XJXu5b76')
+slack:
+  main_token: xoxp-122956417634-122956417762-553500229351-1d9d62bdc072a077f47d55bd33d505f8
+windows:
+  install_chocolatey:
+  install_python_env:
+email:
+  from: tom@cglumberjack.com
+  bcc: tom@cglumberjack.com
+  lj_domain: https://api.mailgun.net/v3/cglumberjack.com/messages
+  mailgun_key: key-3714d0480ab5669b65dc08b8a59c49f7
