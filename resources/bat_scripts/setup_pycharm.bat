@@ -1,2 +1,2 @@
-python %HOMEPATH%\PycharmProjects\developer_onboarding\src\bin\setup.py
+# python %HOMEPATH%\PycharmProjects\developer_onboarding\src\bin\pycharm_setup.py
 PAUSE
