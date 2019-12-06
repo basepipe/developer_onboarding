@@ -10,9 +10,10 @@ def launch_pycharm():
     # proc = subprocess.Popen(["where", "pycharm64.exe"], stdout=subprocess.PIPE, shell=True)
     file = glob.glob(r"C:\Program Files (x86)\JetBrains\*\bin\pycharm64.exe")
     pycharm = file[0]
-    pycharm = r"%s %HOMEPATH%\PycharmProjects\developer_onboarding" % pycharm
-    print pycharm
-    subprocess.Popen(pycharm, universal_newlines=True, creationflags=subprocess.CREATE_NEW_CONSOLE)
+    home = os.path.expanduser("~")
+    command = '"%s" "%s"' % (pycharm, os.path.join(home, 'PycharmProjects', 'developer_onboarding'))
+    print command
+    subprocess.Popen(command, universal_newlines=True, creationflags=subprocess.CREATE_NEW_CONSOLE)
 
 
 def copy_pycharm_settings():
@@ -32,31 +33,20 @@ def copy_pycharm_settings():
             to_path = os.path.join(path_, each)
             print 'Copying %s to %s' % (each_path, to_path)
             shutil.copy(each_path, to_path)
-        # source_file1 = os.path.join(resources, 'colors.scheme.xml')
-        # shutil.copy(source_file1, os.path.join(path_ + "colors.scheme.xml"))
-        # print('copied %s to %s' % (source_file1, os.path.join(path_ + "colors.scheme.xml")))
-        #
-        # source_file2 = os.path.join('keymap.xml')
-        # shutil.copy(source_file2, os.path.join(path_ + "keymap.xml"))
-        # print('copied %s to %s' % (source_file2, os.path.join(path_ + "keymap.xml")))
-        #
-        # source_file3 = os.path.join(resources, 'laf.xml')
-        # shutil.copy(source_file3, os.path.join(path_ + "laf.xml"))
-        # print('copied %s to %s' % source_file3, os.path.join(path_ + "laf.xml"))
     else:
         print 'Could not find .PyCharm* directory'
 
 @click.command()
-@click.option('--pycharm', '-p', default=True, help='set up default pycharm settings for cglumberjack development')
-@click.option('--launch', '-l', default=True, help='launch pycharm after changing settings')
-def main(pycharm, launch):
-    if pycharm:
+@click.option('--settings', '-s', default=False, help='set up default pycharm settings for cglumberjack development')
+@click.option('--launch', '-l', default=False, help='launch pycharm after changing settings')
+def main(settings, launch):
+    if settings:
         copy_pycharm_settings()
     if launch:
         launch_pycharm()
 
 
 if __name__ == "__main__":
-    copy_pycharm_settings()
+    main()
 
 
