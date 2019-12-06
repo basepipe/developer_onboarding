@@ -10,7 +10,8 @@ def launch_pycharm():
     # proc = subprocess.Popen(["where", "pycharm64.exe"], stdout=subprocess.PIPE, shell=True)
     file = glob.glob(r"C:\Program Files (x86)\JetBrains\*\bin\pycharm64.exe")
     pycharm = file[0]
-    pycharm = r"%s" % pycharm
+    pycharm = r"%s %HOMEPATH%\PycharmProjects\developer_onboarding" % pycharm
+    print pycharm
     subprocess.Popen(pycharm, universal_newlines=True, creationflags=subprocess.CREATE_NEW_CONSOLE)
 
 
@@ -47,7 +48,7 @@ def copy_pycharm_settings():
 
 @click.command()
 @click.option('--pycharm', '-p', default=True, help='set up default pycharm settings for cglumberjack development')
-@click.option('--launch', '-l', default=False, help='launch pycharm after changing settings')
+@click.option('--launch', '-l', default=True, help='launch pycharm after changing settings')
 def main(pycharm, launch):
     if pycharm:
         copy_pycharm_settings()
