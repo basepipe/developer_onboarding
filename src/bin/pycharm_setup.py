@@ -73,6 +73,6 @@ def main(settings, launch):
 
 
 if __name__ == "__main__":
-    # main()
-    create_dot_pycharm_dir()
+    main()
+    # create_dot_pycharm_dir()
 
