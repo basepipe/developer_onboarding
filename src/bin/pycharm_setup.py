@@ -5,7 +5,7 @@ import click
 import glob
 
 
-def launch_pycharm(repo='cg_lumberjack'):
+def launch_pycharm(repo='cglumberjack'):
     # get the location of pycharm64.exe
     # proc = subprocess.Popen(["where", "pycharm64.exe"], stdout=subprocess.PIPE, shell=True)
     pycharm = get_pycharm_path()
@@ -13,6 +13,14 @@ def launch_pycharm(repo='cg_lumberjack'):
     command = '"%s" "%s"' % (pycharm, os.path.join(home, 'PycharmProjects', repo))
     print command
     subprocess.Popen(command, universal_newlines=True, creationflags=subprocess.CREATE_NEW_CONSOLE)
+
+
+def launch_cgl():
+    launch_pycharm(repo='cglumberjack')
+
+
+def launch_dev():
+    launch_pycharm(repo='developer_onboarding')
 
 
 def get_pycharm_path():
@@ -65,11 +73,17 @@ def copy_pycharm_settings():
 @click.option('--launch', '-l', default=False, help='launch pycharm after changing settings')
 def main(settings, launch):
     if settings:
+        print settings
+        print 'running settings command'
         copy_pycharm_settings()
     if launch == 'cgl':
-        launch_pycharm()
-    if launch == 'dev':
-        launch_pycharm(repo='developer_onboarding')
+        print('launching pycharm')
+        launch_cgl()
+    elif launch == 'dev':
+        print('launching dev')
+        launch_dev()
+    else:
+        print 'no idea what im doing'
 
 
 if __name__ == "__main__":
