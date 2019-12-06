@@ -6,5 +6,8 @@ python %HOMEPATH%\PycharmProjects\developer_onboarding\src\bin\pycharm_setup.py 
 if not exist "%HOMEPATH%\PycharmProjects\cglumberjack" git clone https://github.com/basepipe/cglumberjack.git %HOMEPATH%\PycharmProjects\cglumberjack
 cd %HOMEPATH%\PycharmProjects\cglumberjack
 pip install -r requirements.txt
+setx PYTHONPATH "%PYTHONPATH%;%HOMEPATH%\PycharmProjects\cglumberjack\cgl;%HOMEPATH%\PycharmProjects\cglumberjack"
+python %HOMEPATH%\PycharmProjects\cglumberjack\cgl\apps\lumbermill\build_config.py
+python %HOMEPATH%\PycharmProjects\cglumberjack\cgl\bin\setup_asana.py
 python %HOMEPATH%\PycharmProjects\developer_onboarding\src\bin\pycharm_setup.py -s=False -l=cgl
 PAUSE
