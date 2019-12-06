@@ -5,13 +5,13 @@ import click
 import glob
 
 
-def launch_pycharm():
+def launch_pycharm(repo='cg_lumberjack'):
     # get the location of pycharm64.exe
     # proc = subprocess.Popen(["where", "pycharm64.exe"], stdout=subprocess.PIPE, shell=True)
     file = glob.glob(r"C:\Program Files (x86)\JetBrains\*\bin\pycharm64.exe")
     pycharm = file[0]
     home = os.path.expanduser("~")
-    command = '"%s" "%s"' % (pycharm, os.path.join(home, 'PycharmProjects', 'developer_onboarding'))
+    command = '"%s" "%s"' % (pycharm, os.path.join(home, 'PycharmProjects', repo))
     print command
     subprocess.Popen(command, universal_newlines=True, creationflags=subprocess.CREATE_NEW_CONSOLE)
 
@@ -42,8 +42,10 @@ def copy_pycharm_settings():
 def main(settings, launch):
     if settings:
         copy_pycharm_settings()
-    if launch:
+    if launch=='cgl':
         launch_pycharm()
+    if launch=='dev':
+        launch_pycharm(repo='developer_onboarding')
 
 
 if __name__ == "__main__":
