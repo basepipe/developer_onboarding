@@ -24,8 +24,9 @@ def copy_pycharm_settings():
             pycharm_dir = each
     if pycharm_dir:
         path_ = os.path.join(home, pycharm_dir, "config", "options")
+        if not os.path.exists(path_):
+            os.makedirs(path_)
         for each in os.listdir(resources):
-            print each
             each_path = os.path.join(resources, each)
             to_path = os.path.join(path_, each)
             print 'Copying %s to %s' % (each_path, to_path)
