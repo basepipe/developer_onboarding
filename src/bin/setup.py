@@ -15,6 +15,8 @@ def launch_pycharm():
 
 
 def copy_pycharm_settings():
+    print __file__
+    resources = os.path.join(__file__.split('src')[0], 'resources', 'pycharm_settings')
     home = os.path.expanduser("~")
     pycharm_dir = ''
     for each in os.listdir(home):
@@ -22,22 +24,29 @@ def copy_pycharm_settings():
             pycharm_dir = each
     if pycharm_dir:
         path_ = os.path.join(home, pycharm_dir, "config", "options")
-        source_file1 = '../../resources/colors.scheme.xml'
-        shutil.copy(source_file1, os.path.join(path_ + "colors.scheme.xml"))
-        print('copied %s to %s' % (source_file1, os.path.join(path_ + "colors.scheme.xml")))
-
-        source_file2 = '../../resources/keymap.xml'
-        shutil.copy(source_file2, os.path.join(path_ + "keymap.xml"))
-        print('copied %s to %s' % (source_file2, os.path.join(path_ + "keymap.xml")))
-
-        source_file3 = '../../resources/laf.xml'
-        shutil.copy(source_file3, os.path.join(path_ + "laf.xml"))
+        for each in os.listdir(resources):
+            print each
+            each_path = os.path.join(resources, each)
+            to_path = os.path.join(path_, each)
+            print 'Copying %s to %s' % (each_path, to_path)
+            shutil.copy(each_path, to_path)
+        # source_file1 = os.path.join(resources, 'colors.scheme.xml')
+        # shutil.copy(source_file1, os.path.join(path_ + "colors.scheme.xml"))
+        # print('copied %s to %s' % (source_file1, os.path.join(path_ + "colors.scheme.xml")))
+        #
+        # source_file2 = os.path.join('keymap.xml')
+        # shutil.copy(source_file2, os.path.join(path_ + "keymap.xml"))
+        # print('copied %s to %s' % (source_file2, os.path.join(path_ + "keymap.xml")))
+        #
+        # source_file3 = os.path.join(resources, 'laf.xml')
+        # shutil.copy(source_file3, os.path.join(path_ + "laf.xml"))
+        # print('copied %s to %s' % source_file3, os.path.join(path_ + "laf.xml"))
     else:
         print 'Could not find .PyCharm* directory'
 
 @click.command()
 @click.option('--pycharm', '-p', default=True, help='set up default pycharm settings for cglumberjack development')
-@click.option('--launch', '-l', default=True, help='launch pycharm after changing settings')
+@click.option('--launch', '-l', default=False, help='launch pycharm after changing settings')
 def main(pycharm, launch):
     if pycharm:
         copy_pycharm_settings()
@@ -46,6 +55,6 @@ def main(pycharm, launch):
 
 
 if __name__ == "__main__":
-    main()
+    copy_pycharm_settings()
 
 
