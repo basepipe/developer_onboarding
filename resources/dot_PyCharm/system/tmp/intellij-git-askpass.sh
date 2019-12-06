@@ -1,0 +1,2 @@
+#!/bin/sh
+"C:/Program Files (x86)/JetBrains/PyCharm 2019.3/jbr/bin/java" -cp "C:/Program Files (x86)/JetBrains/PyCharm 2019.3/plugins/git4idea/lib/git4idea-rt.jar;C:/Program Files (x86)/JetBrains/PyCharm 2019.3/lib/xmlrpc-2.0.1.jar;C:/Program Files (x86)/JetBrains/PyCharm 2019.3/lib/commons-codec-1.13.jar;C:/Program Files (x86)/JetBrains/PyCharm 2019.3/lib/util.jar" org.jetbrains.git4idea.http.GitAskPassApp "$@"

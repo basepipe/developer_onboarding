@@ -1,0 +1,6 @@
+<conversion>
+  <applied-converters>
+    <converter id="DockerRunConfigurationConverterProvider" />
+  </applied-converters>
+  <project-files />
+</conversion>
